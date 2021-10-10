@@ -1,5 +1,5 @@
 /**
- * Format the data fetched from the API to be passed to the Chart
+ * Format the data fetched from the API to be passed to the Chart & Table
  * the data are filtered by the selected orbital body
  * @param {object} APIData - The data fetched from the API
  * @param {string} selectedOrbitalBody - The selected orbital body

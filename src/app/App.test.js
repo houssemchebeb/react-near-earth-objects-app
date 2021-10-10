@@ -57,5 +57,15 @@ describe("App", () => {
 
     // test if the option is selected
     expect(formatDataSpy).toHaveBeenCalledWith({}, orbitalBodies[1]);
+
+    // switch view chart → Table
+    userEvent.click(screen.getByRole("checkbox"));
+
+    // test if the data is present
+    for (let row of data) {
+      for (let element of row) {
+        expect(screen.getByText(new RegExp(element))).toBeInTheDocument();
+      }
+    }
   });
 });
