@@ -15,7 +15,7 @@ describe("Chart", () => {
     ];
     const expected = JSON.stringify(data);
     const { container } = render(
-      <AppContext.Provider value={data}>
+      <AppContext.Provider value={{ data }}>
         <Chart />
       </AppContext.Provider>
     );
