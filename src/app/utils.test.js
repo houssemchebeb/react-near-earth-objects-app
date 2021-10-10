@@ -1,4 +1,4 @@
-import { formatData, getOrbitalBodies } from "./utils";
+import { formatData, getOrbitalBodies, formatDataCSV } from "./utils";
 
 const APIata = {
   near_earth_objects: [
@@ -69,5 +69,22 @@ describe("getOrbitalBodies", () => {
   test("returns the right data", () => {
     expect(getOrbitalBodies({})).toEqual([]);
     expect(getOrbitalBodies(APIata)).toEqual(orbitalBodies);
+  });
+});
+
+describe("formatDataCSV", () => {
+  test("returns the right data", () => {
+    const csvData = [
+      [
+        "NEO Name",
+        "Min Estimated Diameter (km)",
+        "Max Estimated Diameter (km)",
+      ],
+      ["c", 6, 5],
+      ["b", 4, 3],
+      ["a", 2, 1],
+    ];
+
+    expect(formatDataCSV(data)).toEqual(csvData);
   });
 });
