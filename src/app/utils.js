@@ -1,10 +1,20 @@
 /**
  * Format the data fetched from the API to be passed to the Chart
+ * the data are filtered by the selected orbital body
  * @param {object} APIData - The data fetched from the API
+ * @param {string} selectedOrbitalBody - The selected orbital body
  * @returns {string[][]} The formatted data
  */
-function formatData({ near_earth_objects = [] }) {
+function formatData({ near_earth_objects = [] }, selectedOrbitalBody) {
   return near_earth_objects
+    .filter(({ close_approach_data }) => {
+      if (!selectedOrbitalBody) {
+        return true;
+      }
+      return close_approach_data.some(
+        ({ orbiting_body }) => orbiting_body === selectedOrbitalBody
+      );
+    })
     .map(
       ({
         name,
@@ -20,4 +30,19 @@ function formatData({ near_earth_objects = [] }) {
     });
 }
 
-export { formatData };
+/**
+ * Get the orbital bodies names from the API data
+ * @param {object} APIData - The data fetched from the API
+ * @returns {string[]} The orbital bodies names
+ */
+function getOrbitalBodies({ near_earth_objects = [] }) {
+  const set = new Set();
+  near_earth_objects.forEach(({ close_approach_data }) => {
+    close_approach_data.forEach(({ orbiting_body }) => {
+      set.add(orbiting_body);
+    });
+  });
+  return [...set];
+}
+
+export { formatData, getOrbitalBodies };

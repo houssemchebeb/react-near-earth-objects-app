@@ -4,7 +4,7 @@ import { AppContext } from "./context";
 import "./Chart.css";
 
 function BarChart() {
-  const data = useContext(AppContext);
+  const { data } = useContext(AppContext);
 
   if (!data || data.length === 0) {
     return "Loading";
