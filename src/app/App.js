@@ -1,6 +1,8 @@
 import { useMemo, useState, useEffect } from "react";
 import Chart from "./Chart";
 import DropDown from "./DropDown";
+import Table from "./Table";
+import SwitchButton from "./SwitchButton";
 import { formatData } from "./utils";
 import { AppContext } from "./context";
 import { NEO_API } from "./constants";
@@ -8,6 +10,7 @@ import { NEO_API } from "./constants";
 function App() {
   const [APIData, setAPIData] = useState([]);
   const [selectedOrbitalBody, setSelectedOrbitalBody] = useState("");
+  const [showTable, setShowTable] = useState(false);
 
   useEffect(() => {
     fetch(NEO_API)
@@ -27,16 +30,26 @@ function App() {
     () => ({
       data,
       APIData,
+      showTable,
+      setShowTable,
       selectedOrbitalBody,
       setSelectedOrbitalBody,
     }),
-    [data, APIData, selectedOrbitalBody, setSelectedOrbitalBody]
+    [
+      data,
+      APIData,
+      showTable,
+      setShowTable,
+      selectedOrbitalBody,
+      setSelectedOrbitalBody,
+    ]
   );
 
   return (
     <AppContext.Provider value={value}>
+      <SwitchButton />
       <DropDown />
-      <Chart />
+      {showTable ? <Table /> : <Chart />}
     </AppContext.Provider>
   );
 }
