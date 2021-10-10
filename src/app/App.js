@@ -3,6 +3,7 @@ import Chart from "./Chart";
 import DropDown from "./DropDown";
 import Table from "./Table";
 import SwitchButton from "./SwitchButton";
+import DownloadButton from "./DownloadButton";
 import { formatData } from "./utils";
 import { AppContext } from "./context";
 import { NEO_API } from "./constants";
@@ -48,6 +49,7 @@ function App() {
   return (
     <AppContext.Provider value={value}>
       <SwitchButton />
+      <DownloadButton />
       <DropDown />
       {showTable ? <Table /> : <Chart />}
     </AppContext.Provider>

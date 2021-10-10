@@ -45,7 +45,7 @@ describe("App", () => {
     expect(alertSpy).not.toHaveBeenCalled();
 
     // click the dropdown
-    userEvent.click(screen.getByRole("button"));
+    userEvent.click(screen.getAllByRole("button")[1]);
 
     // test if all options are present
     for (let option of orbitalBodies) {

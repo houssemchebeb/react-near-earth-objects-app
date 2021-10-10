@@ -45,4 +45,16 @@ function getOrbitalBodies({ near_earth_objects = [] }) {
   return [...set];
 }
 
-export { formatData, getOrbitalBodies };
+/**
+ * Format the data fetched from the API to be passed to the CSV downloader
+ * @param {object} APIData - The data fetched from the API
+ * @returns {string[][]} The CSV data
+ */
+function formatDataCSV(data) {
+  return [
+    ["NEO Name", "Min Estimated Diameter (km)", "Max Estimated Diameter (km)"],
+    ...data,
+  ];
+}
+
+export { formatData, getOrbitalBodies, formatDataCSV };
